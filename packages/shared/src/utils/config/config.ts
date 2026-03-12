@@ -16,24 +16,24 @@ export const livechat_license_id = 12049137;
 export const livechat_client_id = '66aa088aad5a414484c1fd1fa8a5ace7';
 
 export const domain_app_ids = {
-    'smarttraderstool.com': 129365,
-    'deriv.app': 129365,
-    'app.deriv.com': 129365,
-    'staging-app.deriv.com': 129365,
-    'app.deriv.me': 129365,
-    'staging-app.deriv.me': 129365,
-    'app.deriv.be': 129365,
-    'staging-app.deriv.be': 129365,
-    'binary.com': 129365,
-    'test-app.deriv.com': 129365,
-    'royal-app-seven.vercel.app': 129365,
-    'star-eight-ruby.vercel.app': 129365,
-    'beleiver.vercel.app': 129365,
-    'goon-puce.vercel.app': 129365,
+    'smarttraderstool.com': 106336,
+    'deriv.app': 106336,
+    'app.deriv.com': 106336,
+    'staging-app.deriv.com': 106336,
+    'app.deriv.me': 106336,
+    'staging-app.deriv.me': 106336,
+    'app.deriv.be': 106336,
+    'staging-app.deriv.be': 106336,
+    'binary.com': 106336,
+    'test-app.deriv.com': 106336,
+    'royal-app-seven.vercel.app': 106336,
+    'star-eight-ruby.vercel.app': 106336,
+    'beleiver.vercel.app': 106336,
+    'goon-puce.vercel.app': 106336,
 };
 
 export const platform_app_ids = {
-    derivgo: 129365,
+    derivgo: 106336,
 };
 
 export const getCurrentProductionDomain = () =>
@@ -69,12 +69,12 @@ export const getAppId = () => {
         app_id = user_app_id;
     } else if (isStaging()) {
         window.localStorage.removeItem('config.default_app_id');
-        app_id = is_bot ? 129365 : domain_app_ids[current_domain as keyof typeof domain_app_ids] || 129365;
+        app_id = is_bot ? 106336 : domain_app_ids[current_domain as keyof typeof domain_app_ids] || 106336;
     } else if (/localhost/i.test(window.location.hostname)) {
-        app_id = 129365;
+        app_id = 106336;
     } else {
         window.localStorage.removeItem('config.default_app_id');
-        app_id = is_bot ? 129365 : domain_app_ids[current_domain as keyof typeof domain_app_ids] || 129365;
+        app_id = is_bot ? 106336 : domain_app_ids[current_domain as keyof typeof domain_app_ids] || 106336;
     }
 
     return app_id;
