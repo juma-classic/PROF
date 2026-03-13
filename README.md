@@ -293,7 +293,7 @@ If preferable to use manual deployment, you can use [gh-pages](https://pages.git
 
 # Masters
 
-# Lec-MAIN
+# Legacy Hub-MAIN
 
 # merrick-main
 
