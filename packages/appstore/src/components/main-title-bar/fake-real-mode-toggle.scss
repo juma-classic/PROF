@@ -1,0 +1,21 @@
+.fake-real-mode-toggle {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+
+    &__button {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+
+        &--active {
+            background-color: #ff6b6b;
+            color: white;
+
+            &:hover {
+                background-color: #ff5252;
+            }
+        }
+    }
+}

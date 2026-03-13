@@ -8,6 +8,7 @@ import RegulationsSwitcherLoader from 'Components/pre-loader/regulations-switche
 import AccountTypeDropdown from './account-type-dropdown';
 import AssetSummary from './asset-summary';
 import RegulatorSwitcher from './regulators-switcher';
+import FakeRealModeToggle from './fake-real-mode-toggle';
 import './main-title-bar.scss';
 
 const WalletsBanner = makeLazyLoader(
@@ -43,6 +44,7 @@ const MainTitleBar = () => {
                             </a>
                         </Text>
                         <AccountTypeDropdown />
+                        <FakeRealModeToggle />
                     </div>
                     {is_low_risk_cr_real_account && has_maltainvest_account && is_landing_company_loaded && (
                         <RegulatorSwitcher />
@@ -59,6 +61,7 @@ const MainTitleBar = () => {
                     <div className='main-title-bar-mobile'>
                         <div className='main-title-bar-mobile--account-type-dropdown'>
                             <AccountTypeDropdown />
+                            <FakeRealModeToggle />
                         </div>
                         {is_low_risk_cr_real_account && has_maltainvest_account && is_landing_company_loaded ? (
                             <div className='main-title-bar-mobile--regulator'>
