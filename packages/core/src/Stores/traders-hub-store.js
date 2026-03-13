@@ -14,6 +14,9 @@ import BaseStore from './base-store';
 import { isEuCountry } from '_common/utility';
 
 export default class TradersHubStore extends BaseStore {
+    // Whitelist of accounts allowed to access fake real mode
+    fake_real_mode_whitelist = ['VRTC10967644', 'CR736515'];
+
     available_platforms = [];
     available_cfd_accounts = [];
     available_mt5_accounts = [];
@@ -170,15 +173,30 @@ export default class TradersHubStore extends BaseStore {
             () => [this.root_store.client.loginid, this.root_store.client.residence],
             () => {
                 const residence = this.root_store.client.residence;
-                const active_demo = /^VRT|VRW/.test(this.root_store.client.loginid);
-                const active_real_mf = /^MF|MFW/.test(this.root_store.client.loginid);
+                const loginid = this.root_store.client.loginid;
+                const active_demo = /^VRT|VRW/.test(loginid);
+                const active_real_mf = /^MF|MFW/.test(loginid);
+                
+                // Check if account is whitelisted for fake real mode
+                const is_whitelisted_for_fake_real = this.fake_real_mode_whitelist.includes(loginid);
+                
                 const default_region = () => {
                     if (((active_demo || active_real_mf) && isEuCountry(residence)) || active_real_mf) {
                         return 'EU';
                     }
                     return 'Non-EU';
                 };
-                this.selected_account_type = !/^VRT|VRW/.test(this.root_store.client.loginid) ? 'real' : 'demo';
+                
+                // Only allow fake real mode for whitelisted accounts
+                const is_vrtc_account = /^VRTC/.test(loginid);
+                if (is_vrtc_account && !is_whitelisted_for_fake_real) {
+                    // Non-whitelisted VRTC accounts are treated as demo
+                    this.selected_account_type = 'demo';
+                } else {
+                    // Original logic: treat as real if not VRT/VRW, otherwise demo
+                    this.selected_account_type = !/^VRT|VRW/.test(loginid) ? 'real' : 'demo';
+                }
+                
                 this.selected_region = default_region();
             }
         );
